@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+
+{% block header %}
+<div class="p-3 mb-5">
+    <h1>コーチング管理システム</h1>
+    <p>メッセージ</p>
+</div>
+{% endblock header %}
+
+
+{% block content %}
+<div class=" mw-100 shadow-sm ">
+
+    {% if user.is_authenticated %}
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{% url 'task-new' %}" class="btn btn-outline-success me-3">新規作成</a>
+    </div>
+    {% endif %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">User</th>
+                <th scope="col">Zoom URL</th>
+                <th scope="col">日付</th>
+                <th scope="col">開始時間</th>
+                <th scope="col">終了時間</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in object_list %}
+            <tr>
+                <td><a href="{% url 'task-detail' task.pk %}">{{ task.title }}</a></td>
+                <td>{{ task.ZoomURL }}</td>
+                <td>{{ task.Date }}</td>
+                <td>{{ task.Start }}</td>
+                <td>{{ task.deadline }}</td>
+                <td>{{ task.Status }}</td>
+
+                {% if user.is_authenticated %}
+                <td>
+                    <a href="{% url 'task-edit' task.pk %}">編集</a>
+                    <a href="{% url 'task-delete' task.pk %}">削除</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

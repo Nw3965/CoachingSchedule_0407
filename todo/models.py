@@ -7,9 +7,9 @@ class Log(models.Model):
 # Create your models here.
 class Task(models.Model):
     title = models.CharField('ユーザー名', max_length=30)
-    description = models.TextField('メモ', blank=True)
+    description = models.TextField('メモ', blank=True) #削除する
     ZoomURL = models.CharField('Zoom URL', max_length=50)
-    Date = models.DateTimeField('日付',default=django.utils.timezone.now)
+    Date = models.DateField('日付',default=django.utils.timezone.now)
     Start = models.DateTimeField('開始時間',default=django.utils.timezone.now)
     deadline = models.DateTimeField('終了時間',default=django.utils.timezone.now) #記入例2022-03-03 00:00:00
     Status = models.CharField('ステータス', max_length=50)

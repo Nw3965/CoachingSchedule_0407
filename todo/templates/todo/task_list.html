@@ -5,7 +5,6 @@
 {% block header %}
 <div class="p-3 mb-5">
     <h1>コーチング管理システム</h1>
-    <p>メッセージ</p>
 </div>
 {% endblock header %}
 
@@ -17,7 +16,6 @@
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <a href="{% url 'task-new' %}" class="btn btn-outline-success me-3">新規作成</a>
     </div>
-    {% endif %}
     <table class="table">
         <thead>
             <tr>
@@ -50,5 +48,12 @@
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    ログイン後閲覧できます。
+
+
+    {% endif %}
+
+
 </div>
 {% endblock content %}

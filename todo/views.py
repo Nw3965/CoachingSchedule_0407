@@ -1,3 +1,4 @@
+from tkinter.tix import Form
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
@@ -32,3 +33,8 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("task-list")
+
+
+#class TaskDetailView(DetailView):
+#    model = Form
+#    template_name = "todo/task_detail.html"

@@ -36,7 +36,15 @@
                 <td>{{ task.Date }}</td>
                 <td>{{ task.Start }}</td>
                 <td>{{ task.deadline }}</td>
-                <td>{{ task.Status }}</td>
+                <td>{{ task.Status }}
+                    <form method="POST" aciton="">
+                        {% for field in forms %}
+                        {{ field }}
+                        {% endfor %}
+                        {% csrf_token %}
+
+
+                </td>
 
                 {% if user.is_authenticated %}
                 <td>

@@ -31,7 +31,7 @@ import datetime
 # 編集スコープの設定(今回は読み書き両方OKの設定)
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 # カレンダーIDの設定(基本的には自身のgmailのアドレス)
-calendar_id = 'sosflcalr0n8ppllvu1m18ru78@group.calendar.google.com'
+calendar_id = '**********@group.calendar.google.com'
     
 # 認証ファイルを使用して認証用オブジェクトを作成
 gapi_creds = google.auth.load_credentials_from_file('exalted-airfoil-353804-a78bd1f01ef2.json', SCOPES)[0]

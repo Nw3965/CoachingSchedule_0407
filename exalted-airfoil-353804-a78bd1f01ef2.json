@@ -1,12 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "exalted-airfoil-353804",
-  "private_key_id": "a78bd1f01ef2f17d11a8d49641c3bb04dd0323c4",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCyTFHZLhyPkEI4\nsU3UrNaRzT5//PvxqIOpBS68j39i1CnekEqoPY9hvbLKKeNG0Cv+7mjEneR3ongp\nefTRkfGuPGIsBxNjas6W37zyxPSi31f4vsvdHiVMPikYAdtwDZSOEvhEC5qYOq8i\nXV+1gNT38L0Hegr0c9F5Fy3JYABCzHIB7W4lpiv9+0gMVyujH62+fUfPTOAafRwk\nll8rZGld8v1/hGfAWZC2H/LRcJAmrxO734+fNDjypkExG1zW1r8+PQ24hNZ2rrzT\nVdPH2B0bL9vh3Pq5raZXcAHepOjQtKHXDHguL3MzKesNHoIDCyf5HUXDcE8t6nKt\nDlITy/95AgMBAAECggEABTrIVsyrsUlLq/KFZCTKqV2iBOqEcEbfT7yTbZvu4lTz\nQnAshGlD1JvWC+h1Hl1aQQC4qXWxHxIwoJTPabs0YcYrIfv2JV8bXqEC34MH4uQW\npjjgbWSmNumG1omtaEi5r/4d8o79kpP8EY+4EDCObpRM0xSREDD6dqkHooWylELy\nsNz7e3vu4peqCJPzP+C690O9jrD6riiyQl7tlMdUPOs/PA71S+ZhppvpuNszy9MF\ncNqmjIugLD7rRVDTxhhOWI23qzrfoSoubBsYEubgMEs3e69FN9fkO9zWZ6/xXCIH\nm7tQaXPcO2Bw7dSpcOwlQS5D6EFW+ZSwrdMt3JSVwQKBgQD5j62caQFYviH0FK8V\nmk6CQtKUELPTlhNP2UmufJ1UmSYsuj5AExyLDwIb8PA+En5GDr432+jYQXrTF9ew\nbsrP3kvpiB0wKh/HW4hZE6a3lRomqyI24QesNT67aYAR9VS3KCLyep3p9o+gjCey\nVNtJPvtHQlQPlT/TWnlMy2nG2QKBgQC25fUPkaOLTAcw18vM8Wnx6vm7tgDHHQ0E\nhPC810aHkVzCet5t4Ul3p1/Z53hGwVhr8Na1ugPurRhzOmEPd6apYCIe+AguIn/l\n8qgQ3J506pzpmVBE+tO2lC7GmqdQPOiOyhc3W5GT/hYSZmIVJ4iCW8YoHpfF4gZy\nX41wH3jZoQKBgEY1+/wTNsPGyjqnTxLe1NOlBSWPBWizwj8mvKoQeRsB81GGHFle\nhxtAX7GIua5c+ZWwNCf3AK1Gzs1w2cfTg8+zlNvg5YVVdJdb0yJseu0PT8otP3T9\nHnF+kWWcquFiijD1Y8+gW6klKwdaJxju8rrKs1s69/diYBCQVawbVmkRAoGACA6T\nQA9TXASKYI1xDeMonp6SR8GZwSu3chaFIFx/X+N4aZzOBZsiCGJYJ5o5wywrP/4J\nB1Jdb/syE4lj0zGbJuT0O9cDTTz502BgJPYDCPV42hWF4rQF9YoLkXYonrFAMWIX\nqbmf7RwJTuAxu+rU6aEvVn8agn4VeJ5a9bB9O2ECgYEAqjGvPBNTFFfnbbnjdTdT\nXCT9JRdbrg43mDoE9UTwst7MhRHmC/kU/NNb5ui3Dy0Zrl2Sgc3QiBQ2e/0oJbcB\nGmsUb7L3RwcOCg1sLII5EilmSmk+nevQIoU6b2Wg2kwSQH4pl96/WMquQ23yPyP9\nQ2ve6pZ2pU6ERWaj+tIewbo=\n-----END PRIVATE KEY-----\n",
-  "client_email": "calendar-bot-test@exalted-airfoil-353804.iam.gserviceaccount.com",
-  "client_id": "108501038190871863430",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/calendar-bot-test%40exalted-airfoil-353804.iam.gserviceaccount.com"
-}
+

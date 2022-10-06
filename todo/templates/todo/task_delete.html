@@ -8,9 +8,13 @@
 
 {% block content %}
 <form action="" method="POST">{% csrf_token %}
-    <p>「{{task.pk}}.{{task.title}}」を削除しても良いですか？</p>
+    <p>「{{task.title}}さんの{{task.Status}}」を削除しても良いですか？</p>
     <div class="d-grid gap-2 col-6 mx-left">
         <input class="btn btn-danger" type="submit" value="削除">
     </div>
 </form>
+
+<div class="d-grid gap-2 col-6 mx-left">
+    <button class="btn btn-success" onclick="location.href='/'">戻る</button>
+</div>
 {% endblock content %}

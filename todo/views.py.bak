@@ -1,0 +1,180 @@
+from turtle import title
+from django import forms
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from todo.forms import Taskform
+
+from todo.models import Task
+from django.views.generic.edit import FormView
+from todo.forms import forms
+import json
+from .models import Task
+from .forms import EventForm
+from django.http import Http404
+import time
+from django.template import loader
+from django.http import HttpResponse
+from django.middleware.csrf import get_token
+from django.http import JsonResponse
+from .forms import CalendarForm
+import logging
+
+def info(msg):
+    logger = logging.getLogger('command')
+    logger.info(msg)
+
+
+# Create your views here.
+class TaskListView(LoginRequiredMixin,ListView):
+    model = Task
+    template_name = "todo/task_list.html"
+    def get_queryset(self):
+        qs = super(TaskListView, self).get_queryset()
+        qs = qs.filter(title=self.request.user) # クッキーの中のユーザー名を取ってくる。データベースからログイン中のユーザー一致する名前だけとってくる。直近一週間など
+        return qs
+
+    # def get_queryset(self):
+    #     qs = super(TaskListView, self).get_queryset()
+    #     qs = qs.filter(start_date=self) # 
+    #     return qs
+        
+    # def get_queryset(self):
+    #     qs = super(TaskListView, self).get_queryset()
+    #     qs = qs.filter(end_date=self) # 
+    #     return qs
+
+
+class TaskDetailView(LoginRequiredMixin,DetailView):
+    model = Task
+    template_name = "todo/task_detail.html"
+
+
+class TaskCreateView(LoginRequiredMixin,CreateView):
+    #print(self.user)
+    model = Task
+    form_class = Taskform
+
+
+
+    #fields = "__all__"
+    success_url = reverse_lazy("index")
+
+
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
+    model = Task
+    form_class = Taskform
+    success_url = reverse_lazy("index")
+    template_name = "todo/task_delete.html"
+
+
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = Taskform
+    model = Task
+    #fields = "__all__"
+    success_url = reverse_lazy("index")
+
+
+def add_event(request):
+    """
+    イベント登録
+    """
+    info("82")
+    if request.method == "GET":
+        # GETは対応しない
+        raise Http404()
+    print(80)
+    # JSONの解析
+    datas = json.loads(request.body)
+
+    # バリデーション
+    eventForm = EventForm(datas)
+    if eventForm.is_valid() == False:
+        # バリデーションエラー
+        raise Http404()
+
+    # リクエストの取得
+    start_date = datas["start_date"]
+    end_date = datas["start_date"]
+    #end_date = datas["end_date"]
+    title = datas["title"]
+    status = datas["title"]
+
+    # 日付に変換。JavaScriptのタイムスタンプはミリ秒なので秒に変換
+    formatted_start_date = time.strftime(
+        "%Y-%m-%d", time.localtime(start_date / 1000))
+    formatted_end_date = time.strftime(
+        "%Y-%m-%d", time.localtime(end_date / 1000))
+
+    # 登録処理
+    event = Task(
+        title=str(title),
+        start_date=formatted_start_date,
+        end_date=formatted_start_date,
+        status=str(status),
+    )
+    event.save()
+
+    # 空を返却
+    return HttpResponse("")
+    
+     # トップ画面
+def index(request):
+    """
+    カレンダー画面
+    """
+    # CSRFのトークンを発行する
+    get_token(request)
+
+    template = loader.get_template("todo/index.html")
+    return HttpResponse(template.render())
+    
+def get_events(request):
+    """
+    イベントの取得
+    """
+
+    if request.method == "GET":
+        # GETは対応しない GETは表示 URL手で打つ時　POSTはデータ登録
+        raise Http404()
+
+    # JSONの解析
+    datas = json.loads(request.body)
+
+    # バリデーション
+    calendarForm = CalendarForm(datas)
+    if calendarForm.is_valid() == False:
+        # バリデーションエラー
+        raise Http404()
+
+    # リクエストの取得
+    start_date = datas["start_date"]
+    end_date = datas["end_date"]
+
+    # 日付に変換。JavaScriptのタイムスタンプはミリ秒なので秒に変換
+    formatted_start_date = time.strftime(
+        "%Y-%m-%d", time.localtime(start_date / 1000))
+    formatted_end_date = time.strftime(
+        "%Y-%m-%d", time.localtime(end_date / 1000))
+
+    # FullCalendarの表示範囲のみ表示
+    events = Task.objects.filter(
+        start_date__lt=formatted_end_date, end_date__gt=formatted_start_date
+    )
+
+    # fullcalendarのため配列で返却 　　　開始時刻などを足してカレンダーに表示する
+    list = []
+    for event in events:
+        list.append(
+            {# title 後ろの文字列が表示される。#6/16 ステータスはプルダウンメニューにする。
+                "title": "{}さん　{}から {}".format(event.title, event.Start,event.Status),
+                "status": "{}".format(event.Status),
+                "start": event.start_date,
+                "id": event.id,
+                "end": event.start_date,
+                #"end": event.end_date, -> "end": event.start_date,
+                #削除ボタンの追加-> 作成済みのタスクをクリックすると削除ページに飛ぶ。http://127.0.0.1:8000/task/4/delete/  ->　http://127.0.0.1:8000/task/{}/delete/
+            }
+        )
+
+    return JsonResponse(list, safe=False)

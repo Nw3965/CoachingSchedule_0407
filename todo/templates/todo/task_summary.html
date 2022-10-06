@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+
+{% block header %}
+<div class="p-3 mb-5">
+    <h1>Task Summary<h1>
+</div>
+{% endblock header %}
+
+
+{% block content %}
+<a href="{% url 'task-list'%}" class="btn btn-outline-primary">タスク一覧</a>
+<div class=" mw-100 shadow-sm ">
+
+    {% if user.is_staff %} 
+    <table class="table">
+        <thead>
+            <tr> 
+                <th scope="col">ユーザー</th>
+                <th scope="col">カウント</th>
+                      
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in object_list %}
+            <tr>
+            <!-- object_list はデータベースの検索結果を表示している -->
+                <td>{{ task.title }}</td>
+                <td>{{ task.count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    スタッフ権限でのみ閲覧できます。
+    {% endif %}
+{% endblock content %}
